@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-### 1. 🍴 Clone the Repository
+### 1. 🍴 Clone the Repository (from Github)
 - On the GitHub page of this repository, click the green "Code" button.
 - Copy the URL provided under "Clone with HTTPS".
 - Open your terminal and execute:
@@ -13,10 +13,23 @@
   ```
 - This command clones the repository to your local machine.
 
+### 1a. 🍴 Clone the Repository (without Github)
+
+1. **Clone the Repository Directly:**
+   - Open your terminal on your local machine.
+
+2. **Clone Using Terminal:**
+   - Execute the following command to clone the repository (replace `[paste the URL here]` with the URL you provided):
+     ```
+     git clone https://github.com/CastonPursuit/Lab-Native-Array-Methods-Pt2.git
+     ```
+   - This command will clone the repository to your local machine.
+
+
 ### 2. 🔍 Explore the Problems
 - In your terminal, navigate to the cloned repository's directory:
   ```
-  cd [name of the repository]
+   cd Lab-Native-Array-Methods-Pt2
   ```
 - Open the project in VS Code by typing:
   ```
@@ -53,10 +66,6 @@
 
 ### 7. 🔄 Repeat
 - Continue working through each problem, running your code, testing, and committing your solutions.
-
-Certainly! Here's the completion of the README instructions:
-
----
 
 ### 8. 🚀 Next Steps
 - After completing all the problems, you're ready for the next phase of your learning journey.
