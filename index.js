@@ -17,8 +17,6 @@ function getSortedTitles(songs) {
   return songs.map(x => x.title).sort();
 }
 
-console.log(getSortedTitles(exampleSongData));
-
 // #2
 /**
  * Returns the titles of all songs from a specified album.
@@ -26,7 +24,10 @@ console.log(getSortedTitles(exampleSongData));
  * @param {string} albumName - Name of the album.
  * @returns {string[]} An array of song titles.
  */
-function getSongsFromAlbum(songs, albumName) {}
+function getSongsFromAlbum(songs, albumName) {
+
+   return songs.filter(song => song.album === albumName).map(song => song.title);
+}
 
 // #3 
 /**
@@ -34,7 +35,24 @@ function getSongsFromAlbum(songs, albumName) {}
  * @param {Object[]} songs - An array of songs.
  * @returns {Object} An object with counts of short, medium, and long songs.
  */
-function categorizeSongsByRuntime(songs) {}
+function categorizeSongsByRuntime(songs) {
+  let runtimeCounts = {
+    shortSongs: 0,
+    mediumSongs: 0,
+    longSongs: 0,
+  }
+
+  for (let i = 0; i < songs.length; i++)
+      if (songs[i].runtimeInSeconds < 180)
+          runtimeCounts.shortSongs++;
+        else if (songs[i].runtimeInSeconds >= 180 && songs[i].runtimeInSeconds <= 300)
+            runtimeCounts.mediumSongs++;
+          else if(songs[i].runtimeInSeconds > 300)
+            runtimeCounts.longSongs++;
+          
+            return runtimeCounts;
+
+}
 
 // #4
 /**
@@ -42,7 +60,10 @@ function categorizeSongsByRuntime(songs) {}
  * @param {Object[]} songs - An array of songs.
  * @returns {string} The name of the album with the most songs.
  */
-function findAlbumWithMostSongs(songs) {}
+function findAlbumWithMostSongs(songs) {
+
+
+}
 
 // #5
 /**
