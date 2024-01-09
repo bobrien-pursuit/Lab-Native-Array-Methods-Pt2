@@ -62,8 +62,25 @@ function categorizeSongsByRuntime(songs) {
  */
 function findAlbumWithMostSongs(songs) {
 
+let sortedSongsByAlbum = songs.sort((a,b) => { // sort songs by album
 
+    if (a.album > b.album) {
+          return 1;
+    }
+    if (a.album > b.album){
+          return -1;
+    }
+          return 0;
+});
+
+// filter the array by the Album Title and then save the greatest length
+
+
+
+return sortedSongsByAlbum;
 }
+
+console.log(findAlbumWithMostSongs(exampleSongData));
 
 // #5
 /**
