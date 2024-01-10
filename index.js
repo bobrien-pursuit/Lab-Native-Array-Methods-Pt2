@@ -3,6 +3,7 @@ Native Array Methods pt.2 continues with the same dataset: songs. All required f
 */
 
 
+const { arrayBuffer } = require("stream/consumers");
 const exampleSongData = require("./data/songs");
 // Do not change the line above.
 
@@ -62,22 +63,24 @@ function categorizeSongsByRuntime(songs) {
  */
 function findAlbumWithMostSongs(songs) {
 
-let sortedSongsByAlbum = songs.sort((a,b) => { // sort songs by album
 
-    if (a.album > b.album) {
-          return 1;
-    }
-    if (a.album > b.album){
-          return -1;
-    }
-          return 0;
-});
+const albumCounts = songs.reduce((accumulator, currentSong) => {
 
-// filter the array by the Album Title and then save the greatest length
+  accumulator[currentSong.album] = (accumulator[currentSong.album] || 0) + 1; //creates a property and/or increments it's value
+               
+                    return accumulator;}, {}, this);
 
+                    // iterates through albumCounts
+                        let max = 0;
+                        let maxAlbum = '';
+                    for (let album in albumCounts){
+                          if (albumCounts[album] > max){
+                           max = albumCounts[album];
+                           maxAlbum = album;
+                          }
+                        }
 
-
-return sortedSongsByAlbum;
+      return maxAlbum;
 }
 
 console.log(findAlbumWithMostSongs(exampleSongData));
