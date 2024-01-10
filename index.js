@@ -71,19 +71,17 @@ const albumCounts = songs.reduce((accumulator, currentSong) => {
                     return accumulator;}, {}, this);
 
                     // iterates through albumCounts
-                        let max = 0;
-                        let maxAlbum = '';
+                        let greatest = 0;
+                        let greatestAlbum = '';
                     for (let album in albumCounts){
-                          if (albumCounts[album] > max){
-                           max = albumCounts[album];
-                           maxAlbum = album;
+                          if (albumCounts[album] > greatest){
+                           greatest = albumCounts[album];
+                           greatestAlbum = album;
                           }
                         }
 
-      return maxAlbum;
+      return greatestAlbum;
 }
-
-console.log(findAlbumWithMostSongs(exampleSongData));
 
 // #5
 /**
