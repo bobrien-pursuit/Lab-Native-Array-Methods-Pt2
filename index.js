@@ -115,11 +115,9 @@ function isThereLongSong(songs, runtime) {
  */
 function getSongsWithDurationInMinutes(songs) {
 
-  return songs.map(x => x.runtimeInSeconds/60);
+  return songs.map(x => (Math.floor(x.runtimeInSeconds/60) + x.runtimeInSeconds%60/100).toPrecision(3));
 
 }
-
-console.log(getSongsWithDurationInMinutes(exampleSongData));
 
 // #8
 /**
