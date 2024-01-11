@@ -125,7 +125,28 @@ function getSongsWithDurationInMinutes(songs) {
  * @param {Object[]} songs - An array of songs.
  * @returns {string[]} Array of album names in reverse alphabetical order.
  */
-function getAlbumsInReverseOrder(songs) {}
+function getAlbumsInReverseOrder(songs) {
+
+  let reverseByAlbum = songs.sort((a,b) => {
+
+        if (a.album < b.album)
+            return 1;
+        if (a.album > b.album)
+            return -1;
+        else
+            return 0;
+  });
+
+  let albumTitles = [];
+
+      for (let i = 0; i < reverseByAlbum.length; i++){
+        if (albumTitles.includes(reverseByAlbum[i].album))
+               continue;
+           albumTitles.push(reverseByAlbum[i].album)
+      }
+
+      return albumTitles;
+}
 
 // #9
 /**
@@ -134,7 +155,18 @@ function getAlbumsInReverseOrder(songs) {}
  * @param {string} word - The word to search for in song titles.
  * @returns {string[]} An array of song titles containing the word.
  */
-function songsWithWord(songs, word) {}
+function songsWithWord(songs, word) {
+
+  let songTitles = [];
+
+  for (let i = 0; i < songs.length; i++){
+    if (songs[i].title.includes(word))
+         songTitles.push(songs[i].title);
+  }
+      return songTitles;
+}
+
+console.log(songsWithWord(exampleSongData, 'light'));
 
 // #10
 /**
