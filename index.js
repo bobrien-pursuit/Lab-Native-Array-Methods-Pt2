@@ -185,13 +185,30 @@ function getTotalRuntimeOfArtist(songs, artistName) {
         )[artistName];
 
 }
-console.log(getTotalRuntimeOfArtist(exampleSongData, 'Saib'));
+
 // Problem #11
 /**
  * Prints artists who have more than one song in the list.
  * @param {Object[]} songs - An array of songs.
  */
-function printArtistsWithMultipleSongs(songs) {}
+function printArtistsWithMultipleSongs(songs) {
+  let result = songs.filter((x, i, arr) => arr[i].artist)
+  .reduce((accumulator, currentSong) => {
+
+accumulator[currentSong.artist] = (accumulator[currentSong.artist] || 0) + 1;
+       
+return accumulator;}, {},
+
+);
+
+for (let artist in result){
+      if (result[artist] > 1)
+      console.log(artist);
+}
+return ;
+}
+
+printArtistsWithMultipleSongs(exampleSongData);
 
 // Problem #12
 /**
