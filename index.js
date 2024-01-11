@@ -69,7 +69,7 @@ const albumCounts = songs.reduce((accumulator, currentSong) => {
 
   accumulator[currentSong.album] = (accumulator[currentSong.album] || 0) + 1; //creates a property and/or increments it's value
                
-                    return accumulator;}, {}, this);
+                    return accumulator;}, {},);
 
                     // iterates through albumCounts
                         let greatest = 0;
@@ -166,8 +166,6 @@ function songsWithWord(songs, word) {
       return songTitles;
 }
 
-console.log(songsWithWord(exampleSongData, 'light'));
-
 // #10
 /**
  * Returns the total runtime of songs by a specific artist.
@@ -175,8 +173,19 @@ console.log(songsWithWord(exampleSongData, 'light'));
  * @param {string} artistName - Name of the artist.
  * @returns {number} Total runtime in seconds.
  */
-function getTotalRuntimeOfArtist(songs, artistName) {}
+function getTotalRuntimeOfArtist(songs, artistName) {
 
+ return songs.filter((x, i, arr) => arr[i].artist == [artistName])
+             .reduce((accumulator, currentSong) => {
+
+        accumulator[currentSong.artist] = (accumulator[currentSong.artist] || 0) + currentSong.runtimeInSeconds;
+        
+        return accumulator;}, {},
+        
+        )[artistName];
+
+}
+console.log(getTotalRuntimeOfArtist(exampleSongData, 'Saib'));
 // Problem #11
 /**
  * Prints artists who have more than one song in the list.
