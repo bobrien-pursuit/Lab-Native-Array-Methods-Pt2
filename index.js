@@ -205,17 +205,25 @@ for (let artist in result){
       if (result[artist] > 1)
       console.log(artist);
 }
-return ;
+      return;
 }
-
-printArtistsWithMultipleSongs(exampleSongData);
 
 // Problem #12
 /**
  * Logs the longest song title.
  * @param {Object[]} songs - An array of songs.
  */
-function printLongestSongTitle(songs) {}
+function printLongestSongTitle(songs) {
+  console.log(songs.sort((a,b) => {
+
+    if (a.title.length< b.title.length)
+        return 1;
+    if (a.title.length > b.title.length)
+        return -1;
+    else
+        return 0;
+})[0].title);
+}
 
 // Problem #13
 /**
