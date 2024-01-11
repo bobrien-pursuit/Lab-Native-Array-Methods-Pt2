@@ -5,6 +5,7 @@ Native Array Methods pt.2 continues with the same dataset: songs. All required f
 
 const { arrayBuffer } = require("stream/consumers");
 const exampleSongData = require("./data/songs");
+const { get } = require("http");
 // Do not change the line above.
 
 
@@ -90,7 +91,10 @@ const albumCounts = songs.reduce((accumulator, currentSong) => {
  * @param {string} albumName - Name of the album.
  * @returns {Object|null} First song object in the album or null.
  */
-function getFirstSongInAlbum(songs, albumName) {}
+function getFirstSongInAlbum(songs, albumName) {
+
+  return songs.filter(song => song.album === albumName).find(song => song.title);
+}
 
 // #6
 /**
@@ -99,7 +103,9 @@ function getFirstSongInAlbum(songs, albumName) {}
  * @param {number} runtime - The runtime to check against in seconds.
  * @returns {boolean} True if there is at least one song longer than the runtime.
  */
-function isThereLongSong(songs, runtime) {}
+function isThereLongSong(songs, runtime) {
+  return songs.filter(song => song.runtimeInSeconds > runtime).length >= 1 ? true : false;
+}
 
 // #7
 /**
@@ -107,7 +113,9 @@ function isThereLongSong(songs, runtime) {}
  * @param {Object[]} songs - An array of songs.
  * @returns {Object[]} Array of song objects with runtime in minutes.
  */
-function getSongsWithDurationInMinutes(songs) {}
+function getSongsWithDurationInMinutes(songs) {
+ return songs.forEach(song => song.runtime = runtime/60 + ":" runtime%60);
+}
 
 // #8
 /**
