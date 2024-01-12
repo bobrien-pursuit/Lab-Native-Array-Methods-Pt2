@@ -296,16 +296,25 @@ function findFirstSongStartingWith(songs, letter) {
 
 }
 
-console.log(findFirstSongStartingWith(exampleSongData, 'P'));
-
 // Problem #16
 /**
  * Maps each artist to an array of their song titles.
  * @param {Object[]} songs - An array of songs.
  * @returns {Object} An object mapping each artist to an array of their song titles.
  */
-function mapArtistsToSongs(songs) {}
 
+function mapArtistsToSongs(songs) {
+  let objArtistSongTitles = {};
+  for (let i = 0; i < songs.length; i++){
+     objArtistSongTitles[songs[i].artist] = [];
+     for(let j=0; j < songs.length; j++){
+      if(songs[i].artist == songs[j].artist)
+          objArtistSongTitles[songs[i].artist].push(songs[j].title);
+     };
+  };
+      return objArtistSongTitles;
+    }
+console.log(mapArtistsToSongs(exampleSongData));
 // Problem #17
 /**
  * Finds the album with the longest average song runtime.
