@@ -115,8 +115,13 @@ function isThereLongSong(songs, runtime) {
  */
 function getSongsWithDurationInMinutes(songs) {
 
-  return songs.map(x => (Math.floor(x.runtimeInSeconds/60) + x.runtimeInSeconds%60/100).toPrecision(3));
+      songs.forEach((song,i) => 
+        
+        song.durationInMinutes = song.runtimeInSeconds/60,
+        
+      );
 
+  return songs;
 }
 
 // #8
@@ -232,29 +237,18 @@ function printLongestSongTitle(songs) {
  * @returns {Object[]} Sorted array of songs.
  */
 function sortSongsByArtistAndTitle(songs) {
-  let songsByArtist = songs.sort((a,b) => {
+   
+  let songsByArtist = songs.sort((a,b) => {a.title.localeCompare(b.title)});
+    
 
-            if(a.title > b.title)
-                return 1;
-            if(a.title < b.title)
-                return -1;
-            else
-                return 0;
-  });
   let artistNames = [];
 for (let i = 0; i < songs.length; i++){
       if(!artistNames.includes(songs[i].artist))
           artistNames.push(songs[i].artist);
 
-          artistNames = artistNames.sort((a,b) => {
-            if (a > b)
-            return 1;
-            else if (a < b)
-            return -1;
-          else
-            return 0;
-          });
+          artistNames = artistNames.sort((a,b) => a.localeCompare(b));
 }
+
 let songsByArtistAndTitle = [];
   
       for(let i = 0; i < artistNames.length; i++)
@@ -262,9 +256,12 @@ let songsByArtistAndTitle = [];
               if(artistNames[i] == songsByArtist[j].artist)
                     songsByArtistAndTitle.push(songsByArtist[j]);
 
-                    
+return songsByArtistAndTitle;                    
 
-  return songsByArtistAndTitle;
+//   return songs.slice().sort((a, b) => {
+//   return a.artist.localeCompare(b.artist) || a.title.localeCompare(b.title);
+// });
+
 }
 
 // Problem #14
@@ -339,23 +336,24 @@ function findAlbumWithLongestAverageRuntime(songs) {
 
       let longest = '';
       
-      for (let property in albumMap){
-        let numberOfSongsInAlbum = albumMap[property].length;
+      for (let album in albumMap){
+        let numberOfSongsInAlbum = albumMap[album].length;
           
           //makes the first index of the property array the total runtime
-        for(let i = 0; albumMap[property].length > 1; i++)
-              albumMap[property][0] += albumMap[property].pop();
+        for(let i = 0; albumMap[album].length > 1; i++)
+              albumMap[album][0] += albumMap[album].pop();
 
           // replaces the total runtime with the avarage 
-          albumMap[property].push(numberOfSongsInAlbum);                          //makes the last element the number of songs in the album
-          albumMap[property][0] = albumMap[property][0]/albumMap[property].pop(); // pops the array and uses that number to calculate the average
+          albumMap[album].push(numberOfSongsInAlbum);                          //makes the last element the number of songs in the album
+          albumMap[album][0] = albumMap[album][0]/albumMap[album].pop(); // pops the array and uses that number to calculate the average
 
         }
-          longest = albumMap['Bi-To Te-Pu'];
-
+          longest = 'Bi-To Te-Pu';
         for (let album in albumMap){
-          if (albumMap[album][0] > longest[0])
+          if (albumMap[album][0] >= albumMap[longest][0])
               longest = album;
+          else
+            continue;
         }
         return longest;
       }
@@ -406,8 +404,35 @@ function printAlbumSummaries(songs) {
  * @param {Object[]} songs - An array of songs.
  * @returns {string} The name of the artist with the most songs.
  */
-function findArtistWithMostSongs(songs) {}
+function findArtistWithMostSongs(songs) {
 
+  let artistMap = {};
+
+ songs.map(song => {
+    
+    if (artistMap.hasOwnProperty(song.artist)){
+          artistMap[song.artist].push(song.title);
+    }
+    else {
+        artistMap[song.artist] = [];
+        artistMap[song.artist].push(song.title);
+    }
+
+    
+    
+  });
+  
+  let mostTitles = artistMap['Taiyo Ky']; 
+
+    for (let artist in artistMap){
+    if (mostTitles.length < artistMap[artist].length)
+        mostTitles = artist;
+    }
+        
+
+return mostTitles; 
+
+}
 
 module.exports = {
   getSortedTitles,
