@@ -238,7 +238,7 @@ function printLongestSongTitle(songs) {
  */
 function sortSongsByArtistAndTitle(songs) {
    
-  let songsByArtist = songs.sort((a,b) => {a.title.localeCompare(b.title)});
+  let songsByArtist = songs.sort((a,b) => a.title.localeCompare(b.title));
     
 
   let artistNames = [];
