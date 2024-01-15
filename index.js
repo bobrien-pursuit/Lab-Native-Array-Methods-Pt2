@@ -258,10 +258,6 @@ let songsByArtistAndTitle = [];
 
 return songsByArtistAndTitle;                    
 
-//   return songs.slice().sort((a, b) => {
-//   return a.artist.localeCompare(b.artist) || a.title.localeCompare(b.title);
-// });
-
 }
 
 // Problem #14
