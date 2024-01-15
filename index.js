@@ -314,14 +314,51 @@ function mapArtistsToSongs(songs) {
   };
       return objArtistSongTitles;
     }
-console.log(mapArtistsToSongs(exampleSongData));
+    
 // Problem #17
 /**
  * Finds the album with the longest average song runtime.
  * @param {Object[]} songs - An array of songs.
  * @returns {string} The name of the album with the longest average song runtime.
  */
-function findAlbumWithLongestAverageRuntime(songs) {}
+function findAlbumWithLongestAverageRuntime(songs) {
+  
+  let albumMap = {};
+
+      songs.map((song) => {
+        if (albumMap.hasOwnProperty(song.album)){
+          albumMap[song.album].push(song.runtimeInSeconds)
+      }
+        else {
+          albumMap[song.album] = [];
+          albumMap[song.album].push(song.runtimeInSeconds);
+       }
+
+       
+      });
+
+      let longest = '';
+      
+      for (let property in albumMap){
+        let numberOfSongsInAlbum = albumMap[property].length;
+          
+          //makes the first index of the property array the total runtime
+        for(let i = 0; albumMap[property].length > 1; i++)
+              albumMap[property][0] += albumMap[property].pop();
+
+          // replaces the total runtime with the avarage 
+          albumMap[property].push(numberOfSongsInAlbum);                          //makes the last element the number of songs in the album
+          albumMap[property][0] = albumMap[property][0]/albumMap[property].pop(); // pops the array and uses that number to calculate the average
+
+        }
+          longest = albumMap['Bi-To Te-Pu'];
+
+        for (let album in albumMap){
+          if (albumMap[album][0] > longest[0])
+              longest = album;
+        }
+        return longest;
+      }
 
 // Problem #18
 /**
@@ -335,7 +372,27 @@ function printSongsSortedByRuntime(songs) {}
  * Prints a summary of each album, including its name, total runtime, and number of songs.
  * @param {Object[]} songs - An array of songs.
  */
-function printAlbumSummaries(songs) {}
+function printAlbumSummaries(songs) {
+    let albumSummaries = {};
+
+    songs.forEach((song) => {
+      if (!albumSummaries[song.album]) {
+        albumSummaries[song.album] = {
+          songCount: 1,
+          totalRuntime: song.runtimeInSeconds,
+        };
+      } else {
+        albumSummaries[song.album].songCount++;
+        albumSummaries[song.album].totalRuntime += song.runtimeInSeconds;
+      }
+    });
+
+    for (const summary in albumSummaries) {
+      console.log(
+        `${summary}: ${albumSummaries[summary].songCount} songs, Total Runtime: ${albumSummaries[summary].totalRuntime} seconds`
+      );
+    }
+  }
 
 // Problem #20
 /**
