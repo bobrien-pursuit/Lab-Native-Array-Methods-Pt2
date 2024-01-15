@@ -256,6 +256,11 @@ let songsByArtistAndTitle = [];
               if(artistNames[i] == songsByArtist[j].artist)
                     songsByArtistAndTitle.push(songsByArtist[j]);
 
+                    for (let i = 0; i < songsByArtist.length; i++)
+                        songsByArtist.pop();
+                    for (let i = 0; i < artistNames.length; i++)
+                        artistNames.pop();
+
 return songsByArtistAndTitle;                    
 
 }
